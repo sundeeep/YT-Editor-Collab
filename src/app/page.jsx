@@ -1,16 +1,16 @@
 "use client"
 
+import { PROD_API_URL } from "@/config/urls";
 import { useEffect, useState } from "react";
 
 export default function Home() {
 
-  const DEV_DB_BASE_URL = "http://localhost:3699/";
-  const PROD_DB_BASE_URL = "";
 
   const [name, setName] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${DEV_DB_BASE_URL}getName`);
+      console.log(PROD_API_URL);
+      const response = await fetch(`${PROD_API_URL}/getName`);
       const data = await response.json();
       setName(prev => (prev = data?.name));
     }
