@@ -1,31 +1,23 @@
-"use client"
-
-import { PROD_API_URL } from "@/config/urls";
-import { useEffect, useState } from "react";
+"use client";
+import Link from "next/link";
+import Button from "@/components/ui/Button";
 
 export default function Home() {
-
-
-  const [name, setName] = useState(null);
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log(PROD_API_URL);
-      const response = await fetch(`${PROD_API_URL}/getName`);
-      const data = await response.json();
-      setName(prev => (prev = data?.name));
-    }
-    fetchData();
-    return () => fetchData
-  },[])
-  
   return (
-    <>
-    {
-      name
-      ?<div>Welcome, {name}!</div>
-      :<h1>Loading...</h1>
-    }
-    </>
-      
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+          Welcome to YouTube Editor Collaboration
+        </h1>
+        <div className="mt-6">
+          <Link href="/login">
+            <Button className="mx-2 btn-primary">Login</Button>
+          </Link>
+          <Link href="/register">
+            <Button className="mx-2 btn-primary">Register</Button>
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
